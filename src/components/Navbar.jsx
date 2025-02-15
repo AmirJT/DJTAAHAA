@@ -8,11 +8,18 @@ import { X } from 'lucide-react';
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
+  const handleLogoClick = () => {
+    setIsOpen(false);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
     <nav className="fixed top-0 left-0 w-full bg-gradient-to-r from-black via-gray-900 to-black backdrop-blur-xl z-50 shadow-lg border-b border-gray-800 py-4">
       <div className="flex items-center justify-between px-6 md:px-8">
-        {/* Left - DJ Name */}
-        <h1 className="text-white text-3xl md:text-5xl font-extrabold tracking-wide">DJ TAAHAA</h1>
+        {/* Left - Logo */}
+        <Link href="/" onClick={handleLogoClick}>
+          <Image src="/logo.jpg" alt="DJ TAAHAA Logo" width={100} height={50} className="cursor-pointer" />
+        </Link>
 
         {/* Right - Menu Button */}
         <button className="text-white text-xl md:text-3xl font-bold uppercase tracking-widest transition-transform transform hover:scale-105" onClick={() => setIsOpen(!isOpen)}>
@@ -28,6 +35,7 @@ const Navbar = () => {
       >
         {/* Left Side - Navigation Links */}
         <div className="w-full md:w-2/3 h-full flex flex-col items-center md:items-start justify-center space-y-8 md:space-y-12 px-10 md:pl-20 text-center md:text-left text-3xl md:text-5xl font-bold tracking-wide">
+          <Link href="/" className="hover:text-gray-400 transition-transform transform hover:scale-105" onClick={handleLogoClick}>Home</Link>
           <Link href="/events" className="hover:text-gray-400 transition-transform transform hover:scale-105" onClick={() => setIsOpen(false)}>Events</Link>
           <Link href="/services" className="hover:text-gray-400 transition-transform transform hover:scale-105" onClick={() => setIsOpen(false)}>Services</Link>
           <Link href="/gallery" className="hover:text-gray-400 transition-transform transform hover:scale-105" onClick={() => setIsOpen(false)}>Gallery</Link>

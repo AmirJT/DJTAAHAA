@@ -1,6 +1,6 @@
 'use client';
 
-import '../globals.css';
+import '@/app/globals.css';
 import Image from 'next/image';
 import { useState } from 'react';
 
@@ -12,15 +12,13 @@ const soundServices = [
 ];
 
 const lightServices = [
-  { name: 'Up Lights', description: 'Enhance the ambiance with vibrant color lighting. These are placed around the venue to create a visually appealing atmosphere that complements the event theme.', image: '/61QrExhZyxL_processed.jpg' },
-  { name: 'Moving Head Lights', description: 'These intelligent lights provide dynamic movement and effects, perfect for concerts, club nights, and high-energy performances.', image: '/61QrExhZyxL_processed.jpg' },
-  { name: 'Lasers', description: 'High-intensity laser beams designed to create a dramatic and visually stunning experience, often used in nightclubs and large-scale events.', image: '/61QrExhZyxL_processed.jpg' },
-  { name: 'Cold Sparks', description: 'Safe indoor spark effects that add a wow factor to any performance, making grand entrances and key moments truly spectacular.', image: '/61QrExhZyxL_processed.jpg' },
-  { name: 'Dry Ice / Low Fog', description: 'A beautiful low-lying fog effect that creates the illusion of walking on clouds, commonly used for first dances and special performances.', image: '/61QrExhZyxL_processed.jpg' },
-  { name: 'Cyro Blasters / Co2', description: 'High-powered CO2 jets that release cool fog bursts, adding excitement to the performance or crowd moments.', image: '/61QrExhZyxL_processed.jpg' },
-  { name: 'LED Foam Stick', description: 'Interactive LED sticks handed out to guests, providing an immersive and fun way to engage with the music.', image: '/61QrExhZyxL_processed.jpg' },
-  { name: 'Fog / Haze', description: 'Enhances the effect of lighting by making beams visible in the air, adding depth and intensity to the visuals.', image: '/61QrExhZyxL_processed.jpg' },
-  { name: 'LED Screen', description: 'Large LED screens display visuals, animations, and live video feed, enhancing the audience’s experience at the event.', image: '/61QrExhZyxL_processed.jpg' },
+  { name: 'Up Lights', description: 'Enhance the ambiance with vibrant color lighting.', image: '/61QrExhZyxL_processed.jpg' },
+  { name: 'Moving Head Lights', description: 'Dynamic lighting effects for a lively atmosphere.', image: '/movingheadlights_processed_processed.jpg' },
+  { name: 'Lasers', description: 'High-intensity laser beams designed to create a dramatic and visually stunning experience.', image: '/laser_processed.jpg' },
+  { name: 'Cold Sparks', description: 'Safe indoor spark effects that add a wow factor to any performance.', image: '/cold_processed_processed.jpg' },
+  { name: 'Dry Ice / Low Fog', description: 'A beautiful low-lying fog effect for first dances and special moments.', image: '/fog_processed.jpg' },
+  { name: 'Cyro Blasters / Co2', description: 'High-powered CO2 jets releasing cool fog bursts.', image: '/co2_processed.jpg' },
+  { name: 'Fog / Haze', description: 'Enhances the effect of lighting by making beams visible.', image: '/fog_processed.jpg' },
 ];
 
 const liveBandServices = [
@@ -33,18 +31,18 @@ export default function ServicesPage() {
   return (
     <div className="min-h-screen bg-black text-white px-6 md:px-10 py-24">
       {/* Title */}
-      <div className="w-full border-t border-b border-gray-700 py-6 mb-16 text-center">
-        <h1 className="text-4xl md:text-5xl font-bold text-white uppercase tracking-wider">Our Services</h1>
+      <div className="w-full border-t-2 border-b-2 border-yellow-400 py-4 mb-16 text-center">
+        <h1 className="text-4xl md:text-5xl font-bold text-yellow-400 uppercase tracking-wider">Our Services</h1>
       </div>
 
       {/* Sound Section */}
       <div className="mb-16">
-        <h2 className="text-3xl md:text-4xl font-semibold text-white border-b pb-2 mb-8">Sound</h2>
+        <h2 className="text-3xl md:text-4xl font-semibold text-white mb-8">Sound</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {soundServices.map((service, index) => (
-            <div key={index} className="border-b border-gray-700 pb-4">
-              <h3 className="text-xl md:text-2xl font-medium text-white">{service.name}</h3>
-              {service.description && <p className="text-gray-400 text-md md:text-lg mt-1">{service.description}</p>}
+            <div key={index} className="border border-gray-700 bg-white text-black p-4 rounded-lg text-center shadow-md">
+              <h3 className="text-xl md:text-2xl font-medium">{service.name}</h3>
+              {service.description && <p className="text-gray-700 text-md md:text-lg mt-1">{service.description}</p>}
             </div>
           ))}
         </div>
@@ -52,15 +50,26 @@ export default function ServicesPage() {
 
       {/* Lights Section */}
       <div className="mb-16">
-        <h2 className="text-3xl md:text-4xl font-semibold text-white border-b pb-2 mb-8">Lights</h2>
-        <div className="grid grid-cols-1 gap-12">
+        <h2 className="text-3xl md:text-4xl font-semibold text-white mb-8">Lights</h2>
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
           {lightServices.map((service, index) => (
-            <div key={index} className={`flex flex-col md:flex-row items-center gap-6 ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}` }>
-              <Image src={service.image} alt={service.name} width={200} height={130} className="w-full md:w-1/4 rounded-lg" />
-              <div className="md:w-3/4 text-center md:text-left">
-                <h3 className="text-xl md:text-2xl font-medium text-white">{service.name}</h3>
-                <p className="text-gray-400 text-md md:text-lg mt-2">{service.description}</p>
-              </div>
+            <div key={index} className="flex flex-col items-center text-center">
+              <Image src={service.image} alt={service.name} width={100} height={80} className="rounded-lg" />
+              <h3 className="text-xl md:text-2xl font-medium text-white mt-2">{service.name}</h3>
+              <p className="text-gray-400 text-md md:text-lg mt-1">{service.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Live Band Section */}
+      <div className="mb-16">
+        <h2 className="text-3xl md:text-4xl font-semibold text-white mb-8">Live Band</h2>
+        <p className="text-gray-400 mb-6">For more information about the live band, contact us.</p>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+          {liveBandServices.map((instrument, index) => (
+            <div key={index} className="border border-gray-700 bg-white text-black p-4 rounded-lg text-center shadow-md">
+              <h3 className="text-xl md:text-2xl font-medium">{instrument}</h3>
             </div>
           ))}
         </div>
@@ -71,14 +80,14 @@ export default function ServicesPage() {
         <p className="text-lg md:text-xl text-gray-300 mb-4">For more information about any of our services, contact us:</p>
         <button
           onClick={() => setShowContact(!showContact)}
-          className="px-6 py-3 bg-yellow-500 text-black text-xl font-bold rounded-md shadow-md hover:bg-yellow-600 transition"
+          className="px-6 py-3 bg-white text-black text-xl font-bold rounded-lg shadow-lg hover:bg-gray-300 transition"
         >
           Contact Us
         </button>
         {showContact && (
-          <div className="mt-4 flex flex-col gap-4">
-            <a href="tel:+123456789" className="px-6 py-3 bg-green-500 text-white font-bold rounded-md shadow-md hover:bg-green-600 transition">Call DJ TAHAA</a>
-            <a href="mailto:info@djtaahaa.com" className="px-6 py-3 bg-blue-500 text-white font-bold rounded-md shadow-md hover:bg-blue-600 transition">Email DJ TAHAA</a>
+          <div className="mt-4 flex flex-col gap-2 bg-black text-white p-4 rounded-lg shadow-md border border-gray-500 animate-fadeIn max-w-xs mx-auto">
+            <a href="tel:+123456789" className="px-4 py-2 bg-gray-800 text-white font-bold rounded-md shadow-sm hover:bg-gray-900 transition flex items-center justify-center">📞 Call</a>
+            <a href="mailto:info@djtaahaa.com" className="px-4 py-2 bg-gray-800 text-white font-bold rounded-md shadow-sm hover:bg-gray-900 transition flex items-center justify-center">📧 Email</a>
           </div>
         )}
       </div>

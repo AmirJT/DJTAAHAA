@@ -6,6 +6,7 @@ import UpcomingEventsPreview from "@/components/UpcomingEventsPreview";
 import GalleryCarousel from "@/components/GalleryCarousel";
 import MusicGallery from "@/components/MusicGallery";
 import Booking from '@/components/Booking';
+import FAQSection from '@/components/FAQSection';
 import LoadingWrapper from '@/components/LoadingScreen';
 import ClientLayout from '@/components/ClientLayout'; // ✅ Import new component
 import './globals.css';
@@ -30,6 +31,7 @@ export default function RootLayout({ children }) {
             <GalleryCarousel />
             <MusicGallery />
             <Booking />
+            <FAQSection />
           </ClientLayout>
 
           {/* ✅ Render Other Pages */}

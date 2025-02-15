@@ -23,24 +23,22 @@ const GalleryCarousel = () => {
 
   return (
     <motion.section 
-      className="relative w-full h-screen flex items-center justify-center bg-black text-white overflow-hidden pt-24 pb-16"
+      className="relative w-full min-h-screen flex flex-col items-center justify-center bg-black text-white overflow-hidden pt-24 pb-16"
       initial={{ opacity: 0, y: 100 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 1 }}
       viewport={{ once: false, amount: 0.5 }}
     >
-      {/* Desktop 3D Rotating Gallery */}
-      <div className="hidden md:flex relative w-full max-w-4xl h-[60vh] items-center justify-center">
+      {/* Desktop Sliding Gallery */}
+      <div className="hidden md:flex relative w-full max-w-3xl h-[60vh] items-center justify-center overflow-hidden">
         {images.map((image, index) => (
           <motion.div 
             key={index} 
             className="absolute transition-opacity duration-1000"
             animate={{
               opacity: index === currentIndex ? 1 : 0,
-              scale: index === currentIndex ? 1 : 0.8,
-              rotateY: index === currentIndex ? 0 : 30,
-              zIndex: index === currentIndex ? 10 : 5,
-              filter: index === currentIndex ? "brightness(1.2)" : "brightness(0.7)"
+              x: index === currentIndex ? 0 : index > currentIndex ? 200 : -200,
+              zIndex: index === currentIndex ? 10 : 5
             }}
             transition={{ duration: 1 }}
           >
@@ -48,21 +46,18 @@ const GalleryCarousel = () => {
               src={image} 
               alt="Gallery Image" 
               width={700} 
-              height={450} 
-              className="rounded-lg shadow-lg object-cover w-full h-full border-[4px] border-yellow-400"
+              height={500} 
+              className="rounded-lg shadow-2xl object-cover border-[4px] border-yellow-400"
             />
           </motion.div>
         ))}
       </div>
       
-      {/* Mobile Single Image Carousel with Soft Glow */}
+      {/* Mobile Single Image Carousel */}
       <div className="md:hidden w-full max-w-sm h-[50vh] flex items-center justify-center">
         <motion.div 
           className="relative"
-          animate={{
-            scale: [1, 1.05, 1],
-            boxShadow: ["0px 0px 20px rgba(255, 255, 0, 0.5)", "0px 0px 40px rgba(255, 255, 0, 0.8)", "0px 0px 20px rgba(255, 255, 0, 0.5)"]
-          }}
+          animate={{ x: [200, 0, -200] }}
           transition={{ repeat: Infinity, duration: 3 }}
         >
           <Image 
@@ -70,24 +65,23 @@ const GalleryCarousel = () => {
             alt="Gallery Image" 
             width={600} 
             height={400} 
-            className="rounded-lg shadow-lg object-cover w-full h-full"
+            className="rounded-lg shadow-2xl object-cover"
           />
         </motion.div>
       </div>
       
-      {/* Special "Check Out More Gallery" Button */}
-      <Link 
-  href="/gallery" 
-  className="absolute left-1/2 transform -translate-x-1/2 bottom-[14vh] md:bottom-10"
->
-  <motion.button 
-    className="px-6 py-3 text-lg font-bold uppercase bg-transparent border-[3px] border-yellow-400 text-yellow-400 rounded-full hover:bg-yellow-400 hover:text-black transition-all duration-300 shadow-lg"
-    whileHover={{ scale: 1.05 }}
-    whileTap={{ scale: 0.95 }}
-  >
-    Check Out More Gallery
-  </motion.button>
-</Link>
+      {/* Special "View Full Gallery" Button */}
+      <div className="absolute bottom-12 flex justify-center w-full">
+        <Link href="/gallery">
+          <motion.button 
+            className="px-8 py-3 text-lg font-bold uppercase bg-transparent border-[3px] border-yellow-400 text-yellow-400 rounded-full hover:bg-yellow-400 hover:text-black transition-all duration-300 shadow-lg"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            View Full Gallery
+          </motion.button>
+        </Link>
+      </div>
     </motion.section>
   );
 };
